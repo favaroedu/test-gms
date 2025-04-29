@@ -1,0 +1,19 @@
+[
+    {
+        "titulo" : "Resident Evil",
+        "ano" : 2002,
+        "descrição" : "Resident Evil é um filme de terror e suspense"
+    },
+    {
+        "titulo" : "The Avengers",
+        "ano" : 2012,
+        "descrição" : "The Avengers é um filme de ação da Marvel"
+    },
+    {
+        "titulo" : "Iron Man",
+        "ano" : 2008,
+        "descrição" : "Iron Man é um filme de ação da Marvel que mostra a história de Tony Stark"
+    }
+
+
+]

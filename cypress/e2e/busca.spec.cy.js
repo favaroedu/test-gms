@@ -1,17 +1,34 @@
 /// <reference types="cypress"/>
 
 describe('US-001 Busca de filme', () => {
+  beforeEach(() => {
+    cy.visit('/')
+  });
   it('Verificar se o campo busca está encontrando filmes', () => {
-    cy.visit('https://golden-movie-studio.vercel.app/')
-    cy.get('#search-input').type('Carros')
+    cy.get('#search-input').type('Resident Evil')
     cy.get('#search-button').click()
-    cy.contains('Carpinteiros de Carros').should('be.visible')
+    cy.contains('Resident Evil').should('be.visible')
   })
 
-  it.only('Verificar se o campo limpar busca está funcionando', () => {
-    cy.visit('https://golden-movie-studio.vercel.app/')
-    cy.get('#search-input').type('Carros')
+  it('Verificar se o campo limpar busca está funcionando', () => {
+    cy.get('#search-input').type('Resident Evil')
     cy.get('#clear-button').click()
     cy.get('#search-input').should('have.value', '')
-  })  
+  })
+
+  it('Deve buscar filmes com sucesso de uma lista', () => {
+    cy.fixture('filmes').then((filmes) =>{
+      cy.get('#search-input').type(filmes[0].titulo)
+      cy.get('#search-button').click()
+      cy.get('#results-section').should('contain' , filmes[0].titulo)      
+    })
+  })
+  
+  it.only('Deve buscar filmes com sucesso da lista inteira', () => {
+    cy.fixture('filmes').each((filmes) =>{
+      cy.get('#search-input').clear().type(filmes.titulo)
+      cy.get('#search-button').click()
+      cy.get('#results-section').should('contain' , filmes.titulo)      
+    })
+  }) 
 })  
