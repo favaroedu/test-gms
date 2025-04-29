@@ -11,15 +11,17 @@ describe('US-012 Funcionalidade: Cadastro de membros', () => {
   })
 
   it('Validação do formato de e-mail inválido', () => {
-    
+    const email = 'emailinvalido' 
+  
     cy.get('#signup-firstname').type('Eduardo')
     cy.get('#signup-lastname').type('Favaro')
     cy.get('#signup-email').type(email)
     cy.get('#signup-phone').type('41789465')
     cy.get('#signup-password').type('Favaro@123')
     cy.get('#signup-button').click()
-    cy.get('#signup-response').should('contain' , 'E-mail deve ser um email válido')
+    cy.get('#signup-response').should('contain', 'E-mail deve ser um email válido')
   })
+  
 
   it('Validação de cadastro sem preencher campos obrigatórios', () => {
     
@@ -37,16 +39,18 @@ describe('US-012 Funcionalidade: Cadastro de membros', () => {
     cy.get('#signup-response').should('contain' , 'Sobrenome não pode estar vazio')
   })
 
-  it('Registro com todos os campos preenchidos(incluindo não obrigatórios)', () => {
-    
+  it('Registro com todos os campos preenchidos (incluindo não obrigatórios)', () => {
+    const email = `eduardo${Date.now()}@teste.com`
+  
     cy.get('#signup-firstname').type('Eduardo')
     cy.get('#signup-lastname').type('Favaro')
-    cy.get('#signup-email').type('eduardo2212@teste.com')
+    cy.get('#signup-email').type(email)
     cy.get('#signup-phone').type('41789465')
     cy.get('#signup-password').type('Favaro@123')
     cy.get('#signup-button').click()
-    cy.get('#signup-response').should('contain' , 'Cadastro realizado com sucesso!')
+    cy.get('#signup-response').should('contain', 'Cadastro realizado com sucesso!')
   })
+  
 
   it('Validação de bloqueio de senha fraca', () => {
     
