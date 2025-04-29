@@ -74,7 +74,7 @@ describe('US-012 Funcionalidade: Cadastro de membros', () => {
     cy.get('#signup-response').should('contain' , 'Este email já está cadastrado.')
   })
 
-  it('Validar link da política de privacidade', () => {
+  it('Validar link da política de privacidade', () => { // teste falhando por erro no site
     
     cy.contains('Política de Privacidade').click().wait(5000)
     cy.contains('Introdução').should('be.visible')
